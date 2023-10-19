@@ -1,0 +1,87 @@
+const AddProducts = () => {
+
+    const handleproduct = e =>{
+e.preventDefault();
+    }
+
+    return (
+        <div className="bg-[#F4F3F0] px-24 py-10">
+            <h2 className="text-3xl font-extrabold text-center">Add a Product</h2>
+            <form onSubmit={handleproduct} >
+                {/* Brand name and Product row */}
+                <div className="md:flex mb-8">
+                    <div className="form-control md:w-1/2">
+                        <label className="label">
+                            <span className="label-text">Product Name</span>
+                        </label>
+                        <label className="input-group">
+                            <input type="text" name="product" placeholder="Product Name" className="input input-bordered w-full" />
+                        </label>
+                    </div>
+                    <div className="form-control md:w-1/2 lg:ml-4">
+                        <label className="label">
+                            <span className="label-text">Brand Name</span>
+                        </label>
+                        <label className="input-group">
+                            <input type="text" name="brand" placeholder="Brand Name" className="input input-bordered w-full" />
+                        </label>
+                    </div>
+                </div>
+                {/* product type & price  row */}
+                <div className="md:flex mb-8">
+                    <div className="form-control md:w-1/2">
+                        <label className="label">
+                            <span className="label-text">Type</span>
+                        </label>
+                        <label className="input-group">
+                            <input type="text" name="type" placeholder="product type" className="input input-bordered w-full" />
+                        </label>
+                    </div>
+                    <div className="form-control md:w-1/2 lg:ml-4">
+                        <label className="label">
+                            <span className="label-text">Price</span>
+                        </label>
+                        <label className="input-group">
+                            <input type="text" name="price" placeholder="price" className="input input-bordered w-full" />
+                        </label>
+                    </div>
+                </div>
+                {/* form description & rating row */}
+                <div className="md:flex mb-8">
+                    <div className="form-control md:w-1/2">
+                        <label className="label">
+                            <span className="label-text">Short Description</span>
+                        </label>
+                        <label className="input-group">
+                            <input type="text" name="description" placeholder="write short description" className="input input-bordered w-full" />
+                        </label>
+                    </div>
+                    <div className="form-control md:w-1/2 lg:ml-4">
+                        <label className="label">
+                            <span className="label-text">Rating</span>
+                        </label>
+                        <label className="input-group">
+                            <input type="text" name="rating" placeholder="rate out of 5" className="input input-bordered w-full" />
+                        </label>
+                    </div>
+                </div>
+                {/* form Photo url row */}
+                <div className="mb-8">
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text">Image</span>
+                        </label>
+                        <label className="input-group">
+                            <input type="text" name="image" placeholder="image URL" className="input input-bordered w-full" />
+                        </label>
+                    </div>
+                </div>
+                <input type="submit" value="Add Coffee" className="btn btn-block" />
+
+            </form>
+        </div>
+    );
+
+};
+
+export default AddProducts;
