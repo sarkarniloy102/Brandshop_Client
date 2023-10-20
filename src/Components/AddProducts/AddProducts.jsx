@@ -104,11 +104,11 @@ const AddProducts = () => {
                             <span className="label-text">Image</span>
                         </label>
                         <label className="input-group">
-                            <input type="text" name="image" placeholder="image URL" className="input input-bordered w-full" />
+                            <input type="tssext" name="image" placeholder="image URL" className="input input-bordered w-full" />
                         </label>
                     </div>
                 </div>
-                <input type="submit" value="Add Coffee" className="btn btn-block" />
+                <input type="submit" value="Add Product" className="btn btn-block" />
 
             </form>
         </div>
