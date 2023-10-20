@@ -24,8 +24,8 @@ const Home = () => {
         <div>
             <Banner></Banner>
 
-            <h2 className="text-3xl font-extrabold my-10 text-center">Brand of Entertainment: {brands.length}</h2>
-            <div className="grid grid-cols-3 gap-5">
+            <h2 className="text-3xl font-extrabold my-10 text-center">Platform of Entertainment:</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 ">
             {
                 brands.map((brand,idx)=> <Brand key={idx} name={brand.brand_name} image={brand.brand_image}></Brand> )
             }

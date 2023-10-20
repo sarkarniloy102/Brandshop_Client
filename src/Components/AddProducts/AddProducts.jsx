@@ -38,24 +38,24 @@ const AddProducts = () => {
 
     return (
         <div className="bg-[#F4F3F0] px-24 py-10">
-            <h2 className="text-3xl font-extrabold text-center">Add a Product</h2>
+            <h2 className="text-3xl font-extrabold text-center">Add Information</h2>
             <form onSubmit={handleproduct} >
                 {/* Brand name and Product row */}
                 <div className="md:flex mb-8">
                     <div className="form-control md:w-1/2">
                         <label className="label">
-                            <span className="label-text">Product Name</span>
+                            <span className="label-text">Name</span>
                         </label>
                         <label className="input-group">
-                            <input type="text" name="product" placeholder="Product Name" className="input input-bordered w-full" />
+                            <input type="text" name="product" placeholder="Movie Name" className="input input-bordered w-full" />
                         </label>
                     </div>
                     <div className="form-control md:w-1/2 lg:ml-4">
                         <label className="label">
-                            <span className="label-text">Brand Name</span>
+                            <span className="label-text">Platform Name</span>
                         </label>
                         <label className="input-group">
-                            <input type="text" name="brand" placeholder="Brand Name" className="input input-bordered w-full" />
+                            <input type="text" name="brand" placeholder="Platform Name" className="input input-bordered w-full" />
                         </label>
                     </div>
                 </div>
@@ -66,7 +66,7 @@ const AddProducts = () => {
                             <span className="label-text">Type</span>
                         </label>
                         <label className="input-group">
-                            <input type="text" name="type" placeholder="product type" className="input input-bordered w-full" />
+                            <input type="text" name="type" placeholder="movie type" className="input input-bordered w-full" />
                         </label>
                     </div>
                     <div className="form-control md:w-1/2 lg:ml-4">
@@ -108,7 +108,7 @@ const AddProducts = () => {
                         </label>
                     </div>
                 </div>
-                <input type="submit" value="Add Product" className="btn btn-block" />
+                <input type="submit" value="Add Movie" className="btn btn-block" />
 
             </form>
         </div>
