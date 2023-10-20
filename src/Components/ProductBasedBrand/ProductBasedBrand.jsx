@@ -15,8 +15,9 @@ const ProductBasedBrand = () => {
             <h2>here is your brand</h2>
             <div>
                 {
-                    loadedbrand.map((loadbrand,idx) => <SingleBasedBrand key={idx} singlebrand={loadbrand.idx}></SingleBasedBrand> )
+                    loadedbrand.map((loadbrand,idx) =>  <SingleBasedBrand key={idx} singlebrand={loadbrand}></SingleBasedBrand>)
                 }
+                
             </div>
         </div>
     );

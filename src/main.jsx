@@ -11,6 +11,8 @@ import MyCart from './Components/MyCart/MyCart';
 import Home from './Components/Home/Home';
 import ProductBasedBrand from './Components/ProductBasedBrand/ProductBasedBrand';
 import AuthProvider from './AuthProvider/AuthProvider';
+import SignUp from './Components/SignUp/SignUp';
+import SignIn from './Components/SignIn/SignIn';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,8 +40,16 @@ const router = createBrowserRouter([
           return fetch(
             `http://localhost:5000/brand/${params.brandName}` 
           );
-        },
-      }
+        }
+      },
+      {
+        path: '/signup',
+        element: <SignUp></SignUp>
+      },
+      {
+        path: '/signin',
+        element: <SignIn></SignIn>
+      }, 
       
     ]
   }
