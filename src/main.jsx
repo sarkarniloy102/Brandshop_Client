@@ -13,6 +13,7 @@ import ProductBasedBrand from './Components/ProductBasedBrand/ProductBasedBrand'
 import AuthProvider from './AuthProvider/AuthProvider';
 import SignUp from './Components/SignUp/SignUp';
 import SignIn from './Components/SignIn/SignIn';
+import PrivateRoutes from './Components/PrivateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -29,13 +30,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/cart/myCart",
-        element: <MyCart></MyCart>,
+        element: <PrivateRoutes><MyCart></MyCart></PrivateRoutes>,
         loader: () => fetch('http://localhost:5000/mycart')
       },
 
       {
         path: "/brand/:brandName",
-        element: <ProductBasedBrand />,
+        element: <PrivateRoutes><ProductBasedBrand /></PrivateRoutes> ,
         loader: ({ params }) => {
           console.log(params);
           console.log(params.brandName);

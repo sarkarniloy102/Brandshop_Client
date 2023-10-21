@@ -54,21 +54,7 @@ const Navbar = () => {
                     My Cart
                 </NavLink>
             </li>
-            {/* <li>
-                <NavLink to="/partners" className="hover:text-red-500">
-                    Our Partners
-                </NavLink>
-            </li> */}
-            <li>
-                <NavLink to="/gallery" className="hover:text-red-500">
-                    Gallery
-                </NavLink>
-            </li>
-            <li>
-                <NavLink to="/contact" className="hover:text-red-500">
-                    Contact Us
-                </NavLink>
-            </li>
+         
         </div>
     );
     const toggleUsername = () => {
@@ -78,7 +64,7 @@ const Navbar = () => {
     return (
         <div>
             <div className="navbar bg-slate-200">
-                <div className="navbar-start">
+                <div className="navbar-start px-10">
                     <div className="dropdown ">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
                             <svg

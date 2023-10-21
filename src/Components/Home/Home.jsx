@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Banner from "../Banner/Banner";
 import { useState } from "react";
 import Brand from "../Brand/Brand";
-import Footer from "../Footer/Footer";
+
 
 const Home = () => {
     const [brands, setbrand] = useState([]);
@@ -30,7 +30,7 @@ const Home = () => {
                 brands.map((brand,idx)=> <Brand key={idx} name={brand.brand_name} image={brand.brand_image}></Brand> )
             }
             </div>
-           <Footer></Footer>
+           
         </div>
     );
 };
