@@ -29,17 +29,18 @@ const router = createBrowserRouter([
       },
       {
         path: "/cart/myCart",
-        element: <MyCart></MyCart>
+        element: <MyCart></MyCart>,
+        loader: () => fetch('http://localhost:5000/mycart')
       },
-     
+
       {
-        path: "/brand/:brandName", 
+        path: "/brand/:brandName",
         element: <ProductBasedBrand />,
         loader: ({ params }) => {
           console.log(params);
           console.log(params.brandName);
           return fetch(
-            `http://localhost:5000/brand/${params.brandName}` 
+            `http://localhost:5000/brand/${params.brandName}`
           );
         }
       },
@@ -50,9 +51,9 @@ const router = createBrowserRouter([
       {
         path: '/signin',
         element: <SignIn></SignIn>
-      }, 
-      
-      
+      },
+
+
     ]
   }
 ]);

@@ -3,13 +3,14 @@ import SingleBasedBrand from "../SingleBasedBrand/SingleBasedBrand";
 
 
 const ProductBasedBrand = () => {
+    
 
    const loadedbrand = useLoaderData();
 
-   const brandValues = Object.values(loadedbrand);
-   console.log(brandValues)
+//    const brandValues = Object.values(loadedbrand);
+//  console.log(brandValues)
    
-   console.log(typeof loadedbrand);
+//    console.log(typeof loadedbrand);
     return (
         <div className="my-10 mx-3 lg:mx-10">
             

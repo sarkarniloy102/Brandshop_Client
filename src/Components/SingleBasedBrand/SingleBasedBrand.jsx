@@ -30,8 +30,6 @@ const SingleBasedBrand = ({ singlebrand }) => {
             })
     }
 
-
-
     return (
         <div>
             <div className="card bg-base-100 shadow-xl ">
@@ -48,7 +46,7 @@ const SingleBasedBrand = ({ singlebrand }) => {
                     </div>
 
                     {/* Open the modal using document.getElementById('ID').showModal() method */}
-                    <button className="btn" onClick={() => document.getElementById(_id).showModal()}>Details</button>
+                    <button className="btn mt-4" onClick={() => document.getElementById(_id).showModal()}>Details</button>
                     <dialog id={_id} className="modal modal-bottom sm:modal-middle">
                         <div className="modal-box text-center">
                             <img className='h-80 mx-auto my-3' src={image} alt="" />
@@ -58,7 +56,7 @@ const SingleBasedBrand = ({ singlebrand }) => {
                             <div className="modal-action">
                                 <form method="dialog">
                                     {/* if there is a button in form, it will close the modal */}
-                                    <button  className="btn ">Close</button>
+                                    <button className="btn ">Close</button>
                                 </form>
                             </div>
                         </div>
