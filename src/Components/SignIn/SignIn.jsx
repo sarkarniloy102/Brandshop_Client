@@ -1,76 +1,42 @@
-import {  useState } from "react";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FaGoogle } from "react-icons/fa";
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
-import { FaGoogle } from "react-icons/fa";
-import {
-  GoogleAuthProvider,
-  getAuth,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-} from "firebase/auth";
 import app from "../../Firebase/firebase.config";
-
-
-
-
-const auth = getAuth(app);
-const googleProvider = new GoogleAuthProvider();
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const SignIn = () => {
-  // const {setLoading} =useContext(AuthContext)
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  const { signInUser, setLoading } = useContext(AuthContext);
+  const auth = getAuth(app);
+  const googleProvider = new GoogleAuthProvider();
+  const navigate = useNavigate();
 
-  const handleGoogleSignIn = () => {
-    // setLoading(true);
-    signInWithPopup(auth, googleProvider)
-      .then((result) => {
-        console.log(result.user);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  };
-
-  const handleLogin = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const form = new FormData(e.currentTarget);
-    const email = form.get("email");
-    const password = form.get("password");
-
-    // Reset previous errors
-    setEmailError("");
-    setPasswordError("");
-
-    try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-
-      console.log(user);
-      e.target.reset();
-
-      toast.success("Logged in successfully", {
-        position: "top-right",
-        autoClose: 500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    } catch (error) {
-      console.error(error);
-
-      if (error.code === "auth/user-not-found") {
-        setEmailError("No account found with this email");
-    } else if (error.code === "auth/wrong-password") {
-        setPasswordError("Wrong password");
-    } else if (error.code === "auth/invalid-email") {
-        setEmailError("Invalid email format");
-    } else {
-        setEmailError("An error occurred. Please try again."); // Set a generic error message
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(email, password);
+    signInUser(email, password)
+      .then(result => {
+        console.log(result.user);
+        toast.success("Logged in successfully", {
+          position: "top-right",
+          autoClose: 500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+        setTimeout(() => {
+          navigate('/');
+        }, 2000);
+      })
+      .catch(error => {
+        console.log(error);
         toast.error(error.message, {
           position: "top-right",
           autoClose: 3000,
@@ -81,77 +47,84 @@ const SignIn = () => {
           progress: undefined,
           theme: "colored",
         });
-    }
-    }
+      })
+  };
+  const handleGoogleSignIn = () => {
+    setLoading(true);
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        console.log(result.user);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   return (
-    <div className=" mx-auto max-w-none bg-gradient-to-r from-blue-500 to-indigo-600 text-slate-200 transition-all duration-500 ease-in-out">
-      <div className="hero-content flex flex-col items-center justify-center h-full w-full ">
-        <div className="text-center mb-8">
-          <h1 className="text-5xl font-bold ">
-            Login now!
-          </h1>
-        </div>
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-white transition-transform transform hover:scale-105">
-          <form onSubmit={handleLogin} className="card-body text-slate-900 p-6">
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text">Email</span>
-              </label>
-              <input
-                type="email"
-                name="email"
-                placeholder="email"
-                className="input input-bordered w-full mt-2 p-2"
-                required
-              />
-              {/* Display email error */}
-              {emailError && <p className="text-red-500 mt-1">{emailError}</p>}
-            </div>
-            <div className="form-control mt-4">
-              <label className="label">
-                <span className="label-text">Password</span>
-              </label>
-              <input
-                type="password"
-                name="password"
-                placeholder="password"
-                className="input input-bordered w-full mt-2 p-2"
-                required
-              />
-              {/* Display password error */}
-              {passwordError && <p className="text-red-500 mt-1">{passwordError}</p>}
-            </div>
-
-            <div className="form-control mt-6">
-              <p className="text-black -mt-4 mb-4 text-center">
-                New to this website? Please{" "}
-                <Link
-                  to="/signup"
-                  className="text-blue-500 underline hover:text-blue-700"
-                >
-                  Register
-                </Link>
-              </p>
-              <button className="btn btn-primary  hover:bg-blue-700 transition-all duration-300 ease-in-out transform hover:scale-105 w-full p-2 text-white rounded-md">
-                Login
-              </button>
-            </div>
-            <ToastContainer />
-          </form>
-          <div className="p-2 space-y-2">
-            <h1 className="font-semibold text-center text-black -mt-4">
-              Login with
-            </h1>
-            <button
-              onClick={handleGoogleSignIn}
-              className="btn btn-outline btn-info w-full rounded-lg"
-            >
-              <FaGoogle></FaGoogle>
-              <span>Google</span>
-            </button>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-green-200 to-blue-300">
+      <div className="bg-white p-8 rounded-lg shadow-md w-96">
+        <h1 className="text-3xl font-bold mb-6 text-center">Login</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label className="block text-sm font-semibold mb-2" htmlFor="email">
+              Email Address
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              className="w-full px-4 py-2 border rounded-md border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
           </div>
+
+          <div className="mb-4">
+            <label
+              className="block text-sm font-semibold mb-2"
+              htmlFor="password"
+            >
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              className="w-full px-4 py-2 border rounded-md border-gray-300 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+          <div className="form-control mt-6">
+            <p className="text-black -mt-4 mb-4 text-center">
+              New to this website? Please{" "}
+              <Link
+                to="/signup"
+                className="text-blue-500 underline hover:text-blue-700"
+              >
+                Register
+              </Link>
+            </p>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300 focus:ring-opacity-50 mb-4"
+          >
+            Login
+          </button>
+        </form>
+        <div className="p-6 space-y-4 bg-white rounded-lg shadow-lg">
+          <h1 className="text-2xl font-semibold text-center text-gray-800">
+            Login with
+          </h1>
+          <button
+            onClick={handleGoogleSignIn}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg flex items-center justify-center space-x-2 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            <FaGoogle className="text-red-500" />
+            <span className="text-gray-700">Google</span>
+          </button>
+          <ToastContainer></ToastContainer>
         </div>
       </div>
     </div>

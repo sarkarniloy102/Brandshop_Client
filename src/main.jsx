@@ -13,6 +13,7 @@ import ProductBasedBrand from './Components/ProductBasedBrand/ProductBasedBrand'
 import AuthProvider from './AuthProvider/AuthProvider';
 import SignUp from './Components/SignUp/SignUp';
 import SignIn from './Components/SignIn/SignIn';
+import SingleProductDetails from './Components/SingleProductDetails/SingleProductDetails';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
         element: <Home></Home>
       },
       {
-        path: "/addproducts",
+        path: "/addproduct",
         element: <AddProducts></AddProducts>
       },
       {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
         path: '/signin',
         element: <SignIn></SignIn>
       }, 
+      {
+        path:'/singleproductdetails',
+        element: <SingleProductDetails></SingleProductDetails>
+      }
       
     ]
   }
