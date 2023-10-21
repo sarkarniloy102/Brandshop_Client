@@ -1,11 +1,11 @@
 import { NavLink } from "react-router-dom";
-import ProductBasedBrand from "../ProductBasedBrand/ProductBasedBrand";
+// import ProductBasedBrand from "../ProductBasedBrand/ProductBasedBrand";
 
 const Brand = ({ name, image }) => {
     console.log(name, image);
-    const handlebrand = () => {
-        <ProductBasedBrand></ProductBasedBrand>
-    }
+    // const handlebrand = () => {
+    //     <ProductBasedBrand></ProductBasedBrand>
+    // }
     return (
         <div>
             <NavLink to={`/brand/${name}`}>
@@ -16,9 +16,9 @@ const Brand = ({ name, image }) => {
                     <div className="card-body items-center text-center">
                         <h2 className="card-title">{name}</h2>
                         <p>Todays a good day to have a good day.</p>
-                        <div className="card-actions">
+                        {/* <div className="card-actions">
                             <button  onClick={handlebrand} className="btn btn-primary">See More</button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 </NavLink>
