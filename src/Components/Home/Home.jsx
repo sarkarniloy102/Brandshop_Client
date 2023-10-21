@@ -21,7 +21,7 @@ const Home = () => {
             });
     }, []);
     return (
-        <div>
+        <div className="container mx-auto">
             <Banner></Banner>
 
             <h2 className="text-3xl font-extrabold my-10 text-center">Platform of Entertainment</h2>

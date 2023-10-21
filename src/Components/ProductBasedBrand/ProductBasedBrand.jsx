@@ -11,8 +11,8 @@ const ProductBasedBrand = () => {
    
    console.log(typeof loadedbrand);
     return (
-        <div>
-            <h2>here is your brand</h2>
+        <div className="my-10 mx-3 lg:mx-10">
+            
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 ">
                 {
                     loadedbrand.map((loadbrand,idx) =>  <SingleBasedBrand key={idx} singlebrand={loadbrand}></SingleBasedBrand>)
